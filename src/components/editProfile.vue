@@ -2,7 +2,7 @@
   <v-content class="login-container">
     <v-container fluid fill-height>
       <v-layout align-center justify-center>
-        <v-flex xs12 sm8 md4>
+        <v-flex class="flexa">
           <v-card class="elevation-12">
             <v-toolbar color="primary" dark flat>
               <v-toolbar-title>Edit my profile</v-toolbar-title>
@@ -178,4 +178,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.flexa {
+  max-width: 800px !important;
+}
+</style>

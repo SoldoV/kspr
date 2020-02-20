@@ -16,9 +16,14 @@
         ></v-text-field>
       </div>
       <div>
-        <v-btn v-if="company" icon>
-          <v-icon>add</v-icon>
-        </v-btn>
+        <v-dialog max-width="700" v-model="addDialog">
+          <template v-slot:activator="{ on }">
+            <v-btn v-if="company" icon v-on="on">
+              <v-icon>add</v-icon>
+            </v-btn>
+          </template>
+          <new-add @close="closeDialog" />
+        </v-dialog>
         <v-btn icon>
           <v-icon>textsms</v-icon>
         </v-btn>
@@ -150,10 +155,16 @@
 </template>
 
 <script>
+import newAdd from './newAdd.vue';
+
 export default {
   name: 'MainMenu',
+  components: {
+    newAdd
+  },
   data: () => ({
     offset: true,
+    addDialog: false,
     dialog: false,
     company: true,
     snackbar: false,
@@ -288,6 +299,9 @@ export default {
     applyNow(item) {
       this.snackbar = true;
       item.dialog = false;
+    },
+    closeDialog() {
+      this.addDialog = false;
     }
   }
 };
