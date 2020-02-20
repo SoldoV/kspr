@@ -77,9 +77,19 @@
                 ></v-text-field>
                 <v-text-field
                   id="password"
+                  v-model="oldPassword"
+                  :rules="passRules"
+                  label="Old password"
+                  name="password"
+                  prepend-icon="lock"
+                  type="password"
+                  required
+                ></v-text-field>
+                <v-text-field
+                  id="password"
                   v-model="password"
                   :rules="passRules"
-                  label="Password"
+                  label="New password"
                   name="password"
                   prepend-icon="lock"
                   type="password"
@@ -89,7 +99,7 @@
                   id="repeatPass"
                   :rules="[passRules, passwords]"
                   v-model="repeat"
-                  label="Repeat password"
+                  label="Repeat new password"
                   name="password"
                   prepend-icon="lock"
                   type="password"
@@ -140,6 +150,7 @@ export default {
     menu: false,
     spol: null,
     repeat: '',
+    oldPassword: '',
     password: '',
     username: '',
     nameRules: [
