@@ -52,7 +52,7 @@ export default {
     lazy: true,
     emailRules: [
       v => !!v || 'E-mail is required',
-      v => /.+@.+/.test(v) || 'E-mail must be valid'
+      v => /\S+@\S+\.\S+/.test(v) || 'E-mail must be valid'
     ],
     password: '',
     valid: true,
@@ -67,7 +67,7 @@ export default {
         this.$router.push('/mainMenu');
       }
     }
-  }
+  },
 };
 </script>
 <style>

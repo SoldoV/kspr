@@ -24,9 +24,6 @@
           </template>
           <new-add @close="closeDialog" />
         </v-dialog>
-        <v-btn icon>
-          <v-icon>textsms</v-icon>
-        </v-btn>
         <v-menu top :offset-y="offset">
           <template v-slot:activator="{ on }">
             <v-btn icon v-on="on">
@@ -96,7 +93,7 @@
                   color="primary"
                   v-show="!company"
                   dark
-                  @click="applyNow(item)"
+                  @click="applyNow()"
                   >Apply now!</v-btn
                 >
               </v-card-actions>
@@ -120,25 +117,28 @@
                   {{ item.name }}
                 </div>
                 <v-card-actions style="padding-top: 0px !important">
+                  <a href="http://www.helsinki.fi/urapalvelut/english/materials/sample_cv.pdf" target="_blank">
                   <v-btn
                     depressed
                     color="primary"
                     style="height: 20px; text-transform: capitalize"
                     >See CV</v-btn
                   >
+                  </a>
                   <v-spacer></v-spacer>
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=email@domain.com" target="_blank">
                   <v-btn
                     depressed
                     color="primary"
                     style="height: 20px; text-transform: capitalize"
                     >Message</v-btn
-                  >
+                  ></a>
                 </v-card-actions>
               </v-card>
             </v-card>
           </v-dialog>
           <v-spacer></v-spacer>
-          <v-btn color="primary" depressed class="card-btn">Apply!</v-btn>
+          <v-btn color="primary" @click="applyNow()" v-show="!company" depressed class="card-btn">Apply!</v-btn>
         </v-card-actions>
       </v-card>
     </div>
@@ -296,9 +296,8 @@ export default {
     ]
   }),
   methods: {
-    applyNow(item) {
+    applyNow() {
       this.snackbar = true;
-      item.dialog = false;
     },
     closeDialog() {
       this.addDialog = false;
@@ -340,7 +339,7 @@ export default {
 .card-wrapper {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .manu-toolbar {
   margin-bottom: 2em;
